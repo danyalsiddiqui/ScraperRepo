@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Cinema_ShowTimesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Cinema">
+    <Key>
+      <PropertyRef Name="Cinema_Id" />
+    </Key>
+    <Property Name="Cinema_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cinema_Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Cinema_City_Id" Type="int" />
+    <Property Name="Cinema_Coordinates" Type="nvarchar" MaxLength="100" />
+    <Property Name="Cinema_isDeleted" Type="bit" />
+    <Property Name="Cinema_CreatedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_CinemaScreen">
+    <Key>
+      <PropertyRef Name="CinemaScreen_Id" />
+    </Key>
+    <Property Name="CinemaScreen_Id" Type="int" Nullable="false" />
+    <Property Name="CinemaScreen_Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="CinemaScreen_Cinema_Id" Type="int" />
+    <Property Name="CinemaScreen_isDeleted" Type="bit" />
+    <Property Name="CinemaScreen_CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_City">
+    <Key>
+      <PropertyRef Name="City_Id" />
+    </Key>
+    <Property Name="City_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="City_Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="City_isDeleted" Type="bit" />
+    <Property Name="City_CreatedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_Contact">
+    <Key>
+      <PropertyRef Name="Contact__Id" />
+    </Key>
+    <Property Name="Contact__Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Contact_Cinema_Id" Type="int" />
+    <Property Name="Contact_Type" Type="nvarchar" MaxLength="100" />
+    <Property Name="Contact_Number" Type="nvarchar" MaxLength="200" />
+    <Property Name="Contact_isDeleted" Type="bit" />
+    <Property Name="Contact_CreatedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_Movies">
+    <Key>
+      <PropertyRef Name="Movies_Id" />
+    </Key>
+    <Property Name="Movies_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Movies_Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Movies_Details" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Movies_TrailerURL" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Movies_CoverPicture" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Movies_Director" Type="nvarchar" MaxLength="200" />
+    <Property Name="Movies_isDeleted" Type="bit" />
+    <Property Name="Movies_CreatedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_ShowTime">
+    <Key>
+      <PropertyRef Name="ShowTime_Id" />
+    </Key>
+    <Property Name="ShowTime_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShowTime_Cinema_Id" Type="int" />
+    <Property Name="ShowTime_CinemaScreen_Id" Type="int" />
+    <Property Name="ShowTime_Movie_Id" Type="int" />
+    <Property Name="ShowTime_Time" Type="datetime" />
+    <Property Name="ShowTime_Date" Type="date" />
+    <Property Name="ShowTime_UserDate" Type="nvarchar" MaxLength="100" />
+    <Property Name="ShowTime_IsValid" Type="bit" />
+    <Property Name="ShowTime_isDeleted" Type="bit" />
+    <Property Name="ShowTime_Created_DateTime" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Cinema_TO_City">
+    <End Role="tbl_City" Type="Self.tbl_City" Multiplicity="0..1" />
+    <End Role="tbl_Cinema" Type="Self.tbl_Cinema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_City">
+        <PropertyRef Name="City_Id" />
+      </Principal>
+      <Dependent Role="tbl_Cinema">
+        <PropertyRef Name="Cinema_City_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CinemaScreen_TO_Cinema">
+    <End Role="tbl_Cinema" Type="Self.tbl_Cinema" Multiplicity="0..1" />
+    <End Role="tbl_CinemaScreen" Type="Self.tbl_CinemaScreen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Cinema">
+        <PropertyRef Name="Cinema_Id" />
+      </Principal>
+      <Dependent Role="tbl_CinemaScreen">
+        <PropertyRef Name="CinemaScreen_Cinema_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contact_TO_Cinema">
+    <End Role="tbl_Cinema" Type="Self.tbl_Cinema" Multiplicity="0..1" />
+    <End Role="tbl_Contact" Type="Self.tbl_Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Cinema">
+        <PropertyRef Name="Cinema_Id" />
+      </Principal>
+      <Dependent Role="tbl_Contact">
+        <PropertyRef Name="Contact_Cinema_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShowTime_To_Cinema_Cinema_Id">
+    <End Role="tbl_Cinema" Type="Self.tbl_Cinema" Multiplicity="0..1" />
+    <End Role="tbl_ShowTime" Type="Self.tbl_ShowTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Cinema">
+        <PropertyRef Name="Cinema_Id" />
+      </Principal>
+      <Dependent Role="tbl_ShowTime">
+        <PropertyRef Name="ShowTime_Cinema_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ShowTime_TO_CinemaScreen_Id">
+    <End Role="tbl_CinemaScreen" Type="Self.tbl_CinemaScreen" Multiplicity="0..1" />
+    <End Role="tbl_ShowTime" Type="Self.tbl_ShowTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_CinemaScreen">
+        <PropertyRef Name="CinemaScreen_Id" />
+      </Principal>
+      <Dependent Role="tbl_ShowTime">
+        <PropertyRef Name="ShowTime_CinemaScreen_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_ShowTime_To_Movie_Id">
+    <End Role="tbl_Movies" Type="Self.tbl_Movies" Multiplicity="0..1" />
+    <End Role="tbl_ShowTime" Type="Self.tbl_ShowTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Movies">
+        <PropertyRef Name="Movies_Id" />
+      </Principal>
+      <Dependent Role="tbl_ShowTime">
+        <PropertyRef Name="ShowTime_Movie_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Cinema_ShowTimesModelStoreContainer">
+    <EntitySet Name="tbl_Cinema" EntityType="Self.tbl_Cinema" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_CinemaScreen" EntityType="Self.tbl_CinemaScreen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_City" EntityType="Self.tbl_City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Contact" EntityType="Self.tbl_Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Movies" EntityType="Self.tbl_Movies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_ShowTime" EntityType="Self.tbl_ShowTime" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cinema_TO_City" Association="Self.FK_Cinema_TO_City">
+      <End Role="tbl_City" EntitySet="tbl_City" />
+      <End Role="tbl_Cinema" EntitySet="tbl_Cinema" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CinemaScreen_TO_Cinema" Association="Self.FK_CinemaScreen_TO_Cinema">
+      <End Role="tbl_Cinema" EntitySet="tbl_Cinema" />
+      <End Role="tbl_CinemaScreen" EntitySet="tbl_CinemaScreen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contact_TO_Cinema" Association="Self.FK_Contact_TO_Cinema">
+      <End Role="tbl_Cinema" EntitySet="tbl_Cinema" />
+      <End Role="tbl_Contact" EntitySet="tbl_Contact" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShowTime_To_Cinema_Cinema_Id" Association="Self.FK_ShowTime_To_Cinema_Cinema_Id">
+      <End Role="tbl_Cinema" EntitySet="tbl_Cinema" />
+      <End Role="tbl_ShowTime" EntitySet="tbl_ShowTime" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ShowTime_TO_CinemaScreen_Id" Association="Self.FK_tbl_ShowTime_TO_CinemaScreen_Id">
+      <End Role="tbl_CinemaScreen" EntitySet="tbl_CinemaScreen" />
+      <End Role="tbl_ShowTime" EntitySet="tbl_ShowTime" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_ShowTime_To_Movie_Id" Association="Self.FK_tbl_ShowTime_To_Movie_Id">
+      <End Role="tbl_Movies" EntitySet="tbl_Movies" />
+      <End Role="tbl_ShowTime" EntitySet="tbl_ShowTime" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

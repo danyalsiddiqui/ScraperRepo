@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Cinema_ShowTimesModelStoreContainer" CdmEntityContainer="Cinema_ShowTimesEntities">
+    <EntitySetMapping Name="tbl_Cinema">
+      <EntityTypeMapping TypeName="Cinema_ShowTimesModel.tbl_Cinema">
+        <MappingFragment StoreEntitySet="tbl_Cinema">
+          <ScalarProperty Name="Cinema_Id" ColumnName="Cinema_Id" />
+          <ScalarProperty Name="Cinema_Name" ColumnName="Cinema_Name" />
+          <ScalarProperty Name="Cinema_City_Id" ColumnName="Cinema_City_Id" />
+          <ScalarProperty Name="Cinema_Coordinates" ColumnName="Cinema_Coordinates" />
+          <ScalarProperty Name="Cinema_isDeleted" ColumnName="Cinema_isDeleted" />
+          <ScalarProperty Name="Cinema_CreatedDateTime" ColumnName="Cinema_CreatedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_CinemaScreen">
+      <EntityTypeMapping TypeName="Cinema_ShowTimesModel.tbl_CinemaScreen">
+        <MappingFragment StoreEntitySet="tbl_CinemaScreen">
+          <ScalarProperty Name="CinemaScreen_Id" ColumnName="CinemaScreen_Id" />
+          <ScalarProperty Name="CinemaScreen_Name" ColumnName="CinemaScreen_Name" />
+          <ScalarProperty Name="CinemaScreen_Cinema_Id" ColumnName="CinemaScreen_Cinema_Id" />
+          <ScalarProperty Name="CinemaScreen_isDeleted" ColumnName="CinemaScreen_isDeleted" />
+          <ScalarProperty Name="CinemaScreen_CreatedDate" ColumnName="CinemaScreen_CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_City">
+      <EntityTypeMapping TypeName="Cinema_ShowTimesModel.tbl_City">
+        <MappingFragment StoreEntitySet="tbl_City">
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+          <ScalarProperty Name="City_isDeleted" ColumnName="City_isDeleted" />
+          <ScalarProperty Name="City_CreatedDateTime" ColumnName="City_CreatedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Contact">
+      <EntityTypeMapping TypeName="Cinema_ShowTimesModel.tbl_Contact">
+        <MappingFragment StoreEntitySet="tbl_Contact">
+          <ScalarProperty Name="Contact__Id" ColumnName="Contact__Id" />
+          <ScalarProperty Name="Contact_Cinema_Id" ColumnName="Contact_Cinema_Id" />
+          <ScalarProperty Name="Contact_Type" ColumnName="Contact_Type" />
+          <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
+          <ScalarProperty Name="Contact_isDeleted" ColumnName="Contact_isDeleted" />
+          <ScalarProperty Name="Contact_CreatedDateTime" ColumnName="Contact_CreatedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Movies">
+      <EntityTypeMapping TypeName="Cinema_ShowTimesModel.tbl_Movies">
+        <MappingFragment StoreEntitySet="tbl_Movies">
+          <ScalarProperty Name="Movies_Id" ColumnName="Movies_Id" />
+          <ScalarProperty Name="Movies_Name" ColumnName="Movies_Name" />
+          <ScalarProperty Name="Movies_Details" ColumnName="Movies_Details" />
+          <ScalarProperty Name="Movies_TrailerURL" ColumnName="Movies_TrailerURL" />
+          <ScalarProperty Name="Movies_CoverPicture" ColumnName="Movies_CoverPicture" />
+          <ScalarProperty Name="Movies_Director" ColumnName="Movies_Director" />
+          <ScalarProperty Name="Movies_isDeleted" ColumnName="Movies_isDeleted" />
+          <ScalarProperty Name="Movies_CreatedDateTime" ColumnName="Movies_CreatedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ShowTime">
+      <EntityTypeMapping TypeName="Cinema_ShowTimesModel.tbl_ShowTime">
+        <MappingFragment StoreEntitySet="tbl_ShowTime">
+          <ScalarProperty Name="ShowTime_Id" ColumnName="ShowTime_Id" />
+          <ScalarProperty Name="ShowTime_Cinema_Id" ColumnName="ShowTime_Cinema_Id" />
+          <ScalarProperty Name="ShowTime_CinemaScreen_Id" ColumnName="ShowTime_CinemaScreen_Id" />
+          <ScalarProperty Name="ShowTime_Movie_Id" ColumnName="ShowTime_Movie_Id" />
+          <ScalarProperty Name="ShowTime_Time" ColumnName="ShowTime_Time" />
+          <ScalarProperty Name="ShowTime_Date" ColumnName="ShowTime_Date" />
+          <ScalarProperty Name="ShowTime_UserDate" ColumnName="ShowTime_UserDate" />
+          <ScalarProperty Name="ShowTime_IsValid" ColumnName="ShowTime_IsValid" />
+          <ScalarProperty Name="ShowTime_isDeleted" ColumnName="ShowTime_isDeleted" />
+          <ScalarProperty Name="ShowTime_Created_DateTime" ColumnName="ShowTime_Created_DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
